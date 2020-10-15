@@ -29,7 +29,7 @@ public class Method {
 
 
     public static void show() {
-        for ( int i = 0; i<contractList.size();i++){
+        for (int i = 0; i < contractList.size(); i++) {
             Contract c = contractList.get(i);
             System.out.println(c.toString());
         }
@@ -72,12 +72,26 @@ public class Method {
         System.out.println("Add complete!!!");
     }
 
-    public static void search(int searchId) {
-        for (int i = 0; i < contractList.size(); i++) {
-            Contract c = contractList.get(i);
-            if (searchId == c.getId()) {
-                System.out.println(contractList.get(i));
-                break;
+    public static void search() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhập Name của nguoi cần tìm: ");
+        String searchName =sc.nextLine();
+        for (Contract c: contractList
+             ) {
+                if (searchName.equals(c.getName())){
+                    System.out.println(c.toString());
+                }
+        }
+    }
+
+    public static void searchPhone() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter phone number want search: ");
+        String searchPhone =sc.nextLine();
+        for (Contract c: contractList
+        ) {
+            if (searchPhone.equals(c.getPhoneNumber())){
+                System.out.println(c.toString());
             }
         }
     }
@@ -85,43 +99,42 @@ public class Method {
     public static void update(int updateID) {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < contractList.size(); i++) {
-            if (updateID == contractList.get(i).getId()){
+            if (updateID == contractList.get(i).getId()) {
                 System.out.print("Id mới: ");
                 int newId = Integer.parseInt(sc.nextLine());
                 contractList.get(i).setId(newId);
-                System.out.print("\nHọ tên: ");
+                System.out.print("\nNew Name: ");
                 String newName = sc.nextLine();
                 contractList.get(i).setName(newName);
-                System.out.print("\nGiới : ");
+                System.out.print("\nNew Gender : ");
                 String newGender = sc.nextLine();
                 contractList.get(i).setGender(newGender);
-                System.out.print("\nĐịa chỉ: ");
+                System.out.print("\nNew Address: ");
                 String newAddress = sc.nextLine();
                 contractList.get(i).setAddress(newAddress);
-                System.out.println("\nNgày sinh (dd/MM/yyyy): ");
+                System.out.println("\nNew Date of Birth (dd/MM/yyyy): ");
                 String newDateOfBirth = sc.nextLine();
                 contractList.get(i).setDateOfBirth(newDateOfBirth);
-                System.out.println("\nEmail: ");
+                System.out.println("\nNew Email: ");
                 String newEmail = sc.nextLine();
                 contractList.get(i).setEmailAddress(newEmail);
-                System.out.println(" Update thành công ");
+                System.out.println(" Update complete!! ");
                 break;
             }
         }
     }
 
     public static void delete(int deleteId) {
-
         for (int i = 1; i < contractList.size(); i++) {
             Scanner sc = new Scanner(System.in);
-            if (deleteId == contractList.get(i).getId()){
+            if (deleteId == contractList.get(i).getId()) {
                 System.out.println("Bạn có chắc muốn xóa " + contractList.get(i).getName() + " không? Nhập Y(Yes) hoặc N(No)");
                 String choice = sc.nextLine();
-                if (choice.equals("Y")) {
+                if (choice.equals("Y") || choice.equals("y")) {
                     contractList.remove(i);
-                    System.out.println("Xóa thành công" + contractList.get(i).getName() + "học sinh kh danh sách");
+                    System.out.println("Delete " + contractList.get(i).getName() + " Complete");
                     break;
-                } else if (choice.equals("N")) {
+                } else if (choice.equals("N") || choice.equals("n")) {
                     break;
                 } else {
                     System.out.println("Lỗi");
@@ -139,11 +152,11 @@ public class Method {
     }
 
 
-    public static void readFile() throws IOException{
+    public static void readFile() throws IOException {
         FileReader frr = new FileReader("contract.csv");
         BufferedReader br = new BufferedReader(frr);
         String text;
-        while ((text = br.readLine()) != null){
+        while ((text = br.readLine()) != null) {
             System.out.println(text);
         }
         br.close();

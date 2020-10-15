@@ -20,10 +20,11 @@ public class Main {
             System.out.println("2. Thêm mới");
             System.out.println("3. Cập nhật");
             System.out.println("4. Xóa");
-            System.out.println("5. Tìm kiếm");
-            System.out.println("6. Đọc từ file");
-            System.out.println("7. Ghi vào file");
-            System.out.println("8. Thoát");
+            System.out.println("5. Tìm kiếm theo Name");
+            System.out.println("6. Tìm kiếm theo Phone number");
+            System.out.println("7. Đọc từ file");
+            System.out.println("8. Ghi vào file");
+            System.out.println("9. Exit");
             System.out.print("Chọn chức năng: ");
             choice = sc.nextInt();
 
@@ -47,20 +48,19 @@ public class Main {
                     System.out.println("Delete complete!!");
                     break;
                 case 5:
-                    System.out.print("Enter id want search: ");
-                    int searchId = Integer.parseInt(sc.nextLine());
-                    Method.search(searchId);
+                    Method.search();
                     break;
                 case 6:
-                    Method.readFile();
-                    System.out.println("Thêm thành công");
-                    break;
+                    Method.searchPhone();
                 case 7:
+                    Method.readFile();
+                    break;
+                case 8:
                     Method.writeFile();
                     break;
                 default :
                     System.out.println("lỗi mời nhập lại");
             }
-        } while (choice != 8);
+        } while (choice != 9);
     }
 }
